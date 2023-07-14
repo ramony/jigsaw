@@ -2,13 +2,16 @@ import { useState, useEffect } from "react"
 
 import './Jigsaw.css';
 import Board from './domain/Board';
-import { moveUp, moveDown, moveLeft, moveRight } from './domain/Board';
+import { moveUp, moveDown, moveLeft, moveRight, checkSuccess } from './domain/Board';
 
 function Jigsaw() {
 
   const [board, setBoard] = useState(new Board(3));
 
   function keyDown(e) {
+    if (board.success) {
+      return;
+    }
     switch (e.keyCode) {
       case 39:
         moveRight(board);
@@ -24,6 +27,10 @@ function Jigsaw() {
         console.log(board)
         break;
     }
+    let success = checkSuccess(board);
+    if (success) {
+      board.success = success;
+    }
     setBoard({ ...board });
   }
 
@@ -37,9 +44,16 @@ function Jigsaw() {
   return (
     <div className="Jigsaw">
       <div className="Board">
+        <div className="Result">
+          Result: {board.success ? 'Success' : 'In Progress'}
+        </div>
         {
           board.matrix.map(it => {
-            return <div className="piece" style={{ left: it.pos.left, top: it.pos.top }}>{it.val}</div>
+            if (it.val === 0) {
+              return <div className="piece" style={{ left: it.pos.left, top: it.pos.top }}></div>
+            } else {
+              return <div className="piece piece-ani" style={{ left: it.pos.left, top: it.pos.top }}>{it.val}</div>
+            }
           })
         }
       </div>

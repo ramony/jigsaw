@@ -7,6 +7,8 @@ const POS = {
 
 class Board {
 
+    success = false;
+
     constructor(size) {
         this.size = size;
         this.matrix = [];
@@ -17,8 +19,8 @@ class Board {
     }
 
     calc(size, i) {
-        let x = (i - 1 + size) % size + 1;
-        let y = Math.ceil(i / size) + 1;
+        let x = (i - 1 + size) % size + 3;
+        let y = Math.ceil(i / size);
         return {
             index: i, left: (x * 160) + "px", top: (y * 160) + "px"
         };
@@ -72,6 +74,7 @@ let move = (board, action) => {
         }
     }
 }
+
 let swap = (board, i, j) => {
     let matrix = board.matrix;
     let tempPos = matrix[i].pos;
@@ -88,5 +91,11 @@ let getValByPos = (board, pos) => {
     throw new Error('unexpected error');
 }
 
+
+let checkSuccess = (board) => {
+    let matrix = board.matrix;
+    return matrix.every(it => it.pos.index === it.val);
+}
+
 export default Board;
-export { moveUp, moveDown, moveLeft, moveRight }
+export { moveUp, moveDown, moveLeft, moveRight, checkSuccess }
