@@ -1,0 +1,20 @@
+.Jigsaw {
+  background-color: gray;
+}
+
+.Board {
+  background-color: gray;
+  width: 180px;
+}
+
+.piece {
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+  border-radius: 3px;
+  position: absolute;
+  /* border: 1px solid #555; */
+  text-align: center;
+  vertical-align: middle;
+  line-height: 150px;
+}
