@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { BoardMatrix, ShuffleStrong } from '../config/GameConfig';
 
 class AppStore {
 
@@ -18,7 +19,7 @@ class AppStore {
   }
 
   start() {
-    this.init(4, 6);
+    this.init(BoardMatrix.rows, BoardMatrix.cols);
     this.shuffle();
     this.started = true;
   }
@@ -90,7 +91,7 @@ class AppStore {
   }
 
   shuffle() {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < ShuffleStrong; i++) {
       let n = Math.floor(Math.random() * 4);
       console.log(n)
       if (n === 0) {
