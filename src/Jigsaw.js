@@ -1,37 +1,33 @@
-import { useState, useEffect } from "react"
+import { useContext, useEffect } from "react"
+import { observer } from 'mobx-react';
+import AppContext from './store/appContext'
 
 import './Jigsaw.css';
-import Board from './domain/Board';
-import { moveUp, moveDown, moveLeft, moveRight, checkSuccess } from './domain/Board';
+import Board from './components/Board';
 
-function Jigsaw() {
+const Jigsaw = observer(() => {
 
-  const [board, setBoard] = useState(new Board(3));
+  const appStore = useContext(AppContext);
 
   function keyDown(e) {
-    if (board.success) {
+    if (appStore.success) {
       return;
     }
     switch (e.keyCode) {
       case 39:
-        moveRight(board);
+        appStore.moveRight();
         break;
       case 40:
-        moveDown(board);
+        appStore.moveDown();
         break;
       case 37:
-        moveLeft(board);
+        appStore.moveLeft();
         break;
       case 38:
-        moveUp(board);
-        console.log(board)
+        appStore.moveUp();
         break;
     }
-    let success = checkSuccess(board);
-    if (success) {
-      board.success = success;
-    }
-    setBoard({ ...board });
+    appStore.checkSuccess();
   }
 
   useEffect(() => {
@@ -45,20 +41,12 @@ function Jigsaw() {
     <div className="Jigsaw">
       <div className="Board">
         <div className="Result">
-          Result: {board.success ? 'Success' : 'In Progress'}
+          Result: {appStore.success ? 'Success' : 'In Progress'}
         </div>
-        {
-          board.matrix.map(it => {
-            if (it.val === 0) {
-              return <div className="piece" style={{ left: it.pos.left, top: it.pos.top }}></div>
-            } else {
-              return <div className="piece piece-ani" style={{ left: it.pos.left, top: it.pos.top }}>{it.val}</div>
-            }
-          })
-        }
+        <Board />
       </div>
     </div>
   );
-}
+});
 
 export default Jigsaw;

@@ -6,39 +6,3 @@
   align-items: center;
   display: flex;
 }
-
-.Board {
-  background-color: gainsboro;
-  width: 80%;
-  height: 80%;
-  position: relative;
-}
-
-.Result {
-  position: absolute;
-  width: 300px;
-  height: 150px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  color: blue;
-  font-size: 20px;
-}
-
-.piece {
-  width: 150px;
-  height: 150px;
-  margin: 5px;
-  border-radius: 3px;
-  position: absolute;
-  /* border: 1px solid #ccc; */
-  background-color: white;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-
-.piece-ani {
-  transition: all .3s;
-}

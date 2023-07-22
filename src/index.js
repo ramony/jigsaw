@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { AppStore } from './store/appStore'
+import AppContext from './store/appContext'
+import { buildClassMethods } from './utils/ClassUtils';
+
+const appStore = new AppStore();
+buildClassMethods(AppStore.prototype, appStore);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AppContext.Provider value={appStore}>
+      <App />
+    </AppContext.Provider>
   </React.StrictMode>
 );
 
