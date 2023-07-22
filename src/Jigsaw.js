@@ -2,8 +2,9 @@ import { useContext, useEffect } from "react"
 import { observer } from 'mobx-react';
 import AppContext from './store/appContext'
 
-import './Jigsaw.css';
+import './style/Jigsaw.css';
 import Board from './components/Board';
+import Control from './components/Control';
 
 const Jigsaw = observer(() => {
 
@@ -11,6 +12,9 @@ const Jigsaw = observer(() => {
 
   function keyDown(e) {
     if (appStore.success) {
+      return;
+    }
+    if (!appStore.started) {
       return;
     }
     switch (e.keyCode) {
@@ -39,12 +43,11 @@ const Jigsaw = observer(() => {
 
   return (
     <div className="Jigsaw">
-      <div className="Board">
-        <div className="Result">
+      {/* <div className="Result">
           Result: {appStore.success ? 'Success' : 'In Progress'}
-        </div>
-        <Board />
-      </div>
+        </div> */}
+      <Board />
+      {/* <Control /> */}
     </div>
   );
 });

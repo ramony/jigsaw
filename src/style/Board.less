@@ -1,0 +1,63 @@
+@m: 4;
+@n: 6;
+@squareSize: 100px;
+@marginSize: 1px;
+
+@mp: calc(@m + 1);
+@bwidth: calc(@squareSize * @n);
+@bheight: calc(@squareSize * @mp);
+
+.Board {
+    background-color: gray;
+    width: @bwidth;
+    height: @bheight;
+    position: relative;
+    clear: both;
+}
+
+.Square {
+    width: calc(@squareSize - 2* @marginSize);
+    height: calc(@squareSize - 2* @marginSize);
+    margin: @marginSize;
+    border-radius: 3px;
+    position: absolute;
+    background-color: rgb(239, 221, 187);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.Square-Animate {
+    transition: all .3s;
+}
+
+.Square-Front {
+    z-index: 999;
+}
+
+.genSquare(@max, @i: 0) when (@i < @max) {
+    @x: mod(@i, @n);
+    @y: ((@i - @x) / @n);
+    @m2 : (@m+1);
+
+    .Square-@{y}-@{m2}-@{x}-@{n} {
+        left: (@squareSize * @x);
+        top: (@squareSize * @y);
+    }
+
+    .genSquare(@max, (@i+1));
+}
+
+.genSquare((@m + 1) * @n);
+
+.Result {
+    position: absolute;
+    width: @bwidth;
+    height: @squareSize;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: orange;
+    font-size: 20px;
+}

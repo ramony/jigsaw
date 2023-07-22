@@ -2,9 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class AppStore {
 
-  squares = null;
-
-  initialized = false;
+  squares = [];
 
   m = 0;
 
@@ -12,51 +10,59 @@ class AppStore {
 
   success = false;
 
+  started = false;
+
   constructor() {
     makeAutoObservable(this);
-    this.init(4, 4);
+    this.start();
+  }
+
+  start() {
+    this.init(4, 6);
+    this.shuffle();
+    this.started = true;
   }
 
   init(m, n) {
     this.m = m;
     this.n = n;
     this.squares = [];
+    let value = 0;
+    let key = 0;
     for (let i = 0; i < m + 1; i++) {
       for (let j = 0; j < n; j++) {
         if (i == 0 && j < n - 1) {
           continue;
         }
-        this.squares.push({ x: j, y: i, dx: j, dy: i, value: i * n + j })
-        console.log({ x: j, y: i, dx: j, dy: i, value: i * n + j })
+        this.squares.push({ key: key++, x: j, y: i, dx: j, dy: i, value: value++ })
       }
     }
-    this.initialized = true;
   }
 
   moveUp() {
-    let { x, y } = this.board.squares[0];
+    let { x, y } = this.squares[0];
     if (y < this.m) {
       this.swap(0, this.find(x, y + 1))
     }
   }
 
   moveDown() {
-    let { x, y } = this.board.squares[0];
+    let { x, y } = this.squares[0];
     if (y > 1 || (y === 1 && x === this.n - 1)) {
       this.swap(0, this.find(x, y - 1))
     }
   }
 
   moveLeft() {
-    let { x, y } = this.board.squares[0];
+    let { x, y } = this.squares[0];
     if (x < this.n - 1) {
       this.swap(0, this.find(x + 1, y))
     }
   }
 
   moveRight() {
-    let { x, y } = this.board.squares[0];
-    if (x > 0) {
+    let { x, y } = this.squares[0];
+    if (x > 0 && !(x === this.n - 1 && y === 0)) {
       this.swap(0, this.find(x - 1, y))
     }
   }
@@ -81,6 +87,22 @@ class AppStore {
 
   checkSuccess() {
     this.success = this.squares.every(it => it.x === it.dx && it.y === it.dy);
+  }
+
+  shuffle() {
+    for (let i = 0; i < 8; i++) {
+      let n = Math.floor(Math.random() * 4);
+      console.log(n)
+      if (n === 0) {
+        this.moveRight();
+      } else if (n === 1) {
+        this.moveDown();
+      } else if (n === 2) {
+        this.moveLeft();
+      } else {
+        this.moveUp();
+      }
+    }
   }
 
 }
