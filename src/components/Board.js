@@ -11,6 +11,7 @@ const Board = observer(() => {
 
     return (
         <div className="Board">
+            <div className="title">快   乐   学   习</div>
             {
                 appStore.squares.map((it, index) => {
                     return <div className={"Square Square-" + it}></div>
