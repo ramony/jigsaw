@@ -1,85 +1,23 @@
-@m: 3;
-@n: 3;
-@squareSize: 200px;
-@marginSize: 1px;
-
-@mp: calc(@m + 2);
-@bwidth: calc(@squareSize * @n);
-@bheight: calc(@squareSize * @mp);
-
 .Board {
-    background-color: antiquewhite;
-    width: @bwidth;
-    height: @bheight;
-    position: relative;
-    clear: both;
+    width: 95%;
+    height: 95%;
 }
 
 .Square {
-    width: calc(@squareSize - 2* @marginSize);
-    height: calc(@squareSize - 2* @marginSize);
-    margin: @marginSize;
+    width: 80px;
+    height: 80px;
+    margin: 3px;
     border-radius: 5px;
-    position: absolute;
-    background-color: rgb(235, 218, 218);
+    border: 1px solid green;
     align-items: center;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.Primary-Picture {
-    width: calc(@squareSize - 2* @marginSize);
-    height: calc(@squareSize - 2* @marginSize);
-    margin: @marginSize;
-
-    img {
-        width: 80%;
-        height: 80%;
-    }
+    float: left;
 }
 
 
-.Square-Animate {
-    transition: all ease-in-out .3s;
+.Square-0 {
+    background-color: #DDEADF;
 }
 
-.Square-Front {
-    z-index: 999;
-}
-
-.genSquare(@max, @i: 0) when (@i < @max) {
-    @x: mod(@i, @n);
-    @y: ((@i - @x) / @n);
-    @m2 : (@m+1);
-
-    .Square-@{y}-@{m2}-@{x}-@{n} {
-        left: (@squareSize * @x);
-        top: (@squareSize * @y);
-    }
-
-    .Image-@{y}-@{m2}-@{x}-@{n} {
-        left: 0px;
-        top: 0px;
-        position: absolute;
-        margin-top: (@squareSize * -(@y - 1));
-        margin-left: (@squareSize * -@x);
-    }
-
-    .genSquare(@max, (@i+1));
-}
-
-.genSquare((@m + 1) * @n);
-
-.Result {
-    position: absolute;
-    width: @bwidth;
-    height: @squareSize;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    color: orange;
-    font-size: 15px;
-    bottom: 0px;
+.Square-12 {
+    background-color: #CCE8CF;
 }
