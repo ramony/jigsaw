@@ -7,17 +7,17 @@ import '../style/Board.less';
 
 const Board = observer(() => {
 
-  const appStore = useContext(AppContext);
+    const appStore = useContext(AppContext);
 
-  return (
-    <div className="Board">
-      {
-        appStore.squares.map((it, index) => {
-          return <div className={"Square Square-" + it}></div>
-        })
-      }
-    </div>
-  )
+    return (
+        <div className="Board">
+            {
+                appStore.squares.map((it, index) => {
+                    return <div className={"Square Square-" + it.type}></div>
+                })
+            }
+        </div>
+    )
 
 })
 
