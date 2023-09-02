@@ -7,8 +7,9 @@ class AppStore {
 
   constructor() {
     makeAutoObservable(this);
-    for (let i = 0; i < 117; i++) {
-      this.squares.push(i % 10 == 0 ? 0 : 1)
+    let size = 8;
+    for (let i = 0; i < 88; i++) {
+      this.squares.push(i < size * size && (i % (size + 1) == 0 || i % (size - 1) == 0) ? 0 : 1)
     }
   }
 
