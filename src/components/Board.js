@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useContext } from "react"
 import { observer } from 'mobx-react';
 
 import AppContext from '../store/appContext';
@@ -13,7 +13,12 @@ const Board = observer(() => {
         <div className="Board">
             {
                 appStore.squares.map((it, index) => {
-                    return <div className={"Square Square-" + it.type}></div>
+                    return <div className={"Square Square-" + it.type}>
+                        <div class="lt"></div>
+                        <div></div>
+                        <div></div>
+                        <div class="rb"></div>
+                    </div>
                 })
             }
         </div>

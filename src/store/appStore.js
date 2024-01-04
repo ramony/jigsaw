@@ -1,5 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
-import { BoardMatrix, ShuffleStrong } from '../config/GameConfig';
+import { makeAutoObservable } from "mobx";
 
 class AppStore {
 
@@ -27,7 +26,7 @@ class AppStore {
     for (let i = 0; i < 88; i++) {
       this.squares.push({
         i: i,
-        type: i < size * size && (i % (size + 1) == 0 || i % (size - 1) == 0) ? 0 : 1
+        type: i < size * size && (i % (size + 1) === 0 || i % (size - 1) === 0) ? 0 : 1
       })
     }
   }
