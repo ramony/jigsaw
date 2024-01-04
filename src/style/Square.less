@@ -16,27 +16,25 @@
   box-sizing: border-box;
 }
 
-
-.Square div.lt {
+.Square div {
   height: 100%;
   width: 100%;
-  border-right: 1px dashed orange;
-  border-bottom: 1px dashed orange;
+}
+
+@SquareDashColor : orange;
+
+.Square div.lt {
+  border-right: 1px dashed @SquareDashColor;
+  border-bottom: 1px dashed @SquareDashColor;
 }
 
 .Square div.rb {
-  height: 100%;
-  width: 100%;
-  border-top: 1px dashed orange;
-  border-left: 1px dashed orange;
+  border-top: 1px dashed @SquareDashColor;
+  border-left: 1px dashed @SquareDashColor;
 }
 
 .Square-0 {
   background-color: #DDEADF;
-}
-
-.Square-12 {
-  background-color: #CCE8CF;
 }
 
 .title {
