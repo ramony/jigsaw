@@ -1,5 +1,5 @@
 import './App.css';
-import Jigsaw from './Jigsaw';
+import Jigsaw from './components/Jigsaw';
 
 function App() {
   return (
