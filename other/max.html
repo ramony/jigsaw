@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MAX</title>
+    <script>
+        function find() {
+            let excelContent = document.getElementById('excelContent').value;
+            if (!excelContent) {
+                alert('excel content is required');
+                return;
+            }
+            let data = [];
+            for (row of excelContent.trim().split('\n')) {
+                let items = row.split('\t');
+                let key = items[0].trim();
+                data.push([items[0].trim(), items[1].trim(), items[2].trim()]);
+            }
+            data.shift();
+
+            var maxMap = {};
+            for (i in data) {
+                let row = data[i];
+                let key = row[0];
+                let maxIndex = maxMap[key];
+                if (!maxIndex) {
+                    maxMap[key] = i;
+                } else if (greater(row[2], data[maxIndex][2])) {
+                    maxMap[key] = i;
+                }
+            }
+
+            var table = [];
+            table.push("<table border=1>")
+            for (i of Object.values(maxMap)) {
+                let row = data[i];
+                table.push("<tr><td>" + row[0] + "</td>" + "<td>" + row[1] + "</td>" + "<td>" + row[2] + "</td></tr>")
+            }
+            table.push("</table>")
+            document.getElementById('result').innerHTML = table.join("");
+        }
+
+        function greater(s1, s2) {
+            let n1 = s1.replace(/[^0-9\\.]/, '');
+            let n2 = s2.replace(/[^0-9\\.]/, '');
+            return n1 > n2;
+        }
+    </script>
+</head>
+
+<body>
+
+    <form>
+        <label>Please paste excel content</label><br>
+        <textarea cols="100" rows="20" id="excelContent"></textarea><br>
+        <input type="button" value="Start" onclick="find()" />
+    </form>
+    <label>Result</label><br>
+    <div id="result"></div>
+
+</body>
+
+</html>
