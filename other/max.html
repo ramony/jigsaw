@@ -46,6 +46,36 @@
             let n2 = s2.replace(/[^0-9\\.]/, '');
             return n1 > n2;
         }
+
+        function download() {
+            let list = []
+            $('table#query_result1 tr').map((i, tr) => {
+                var line = []
+                $('td,th', tr).map((j, it) => {
+                    line.push($(it).text());
+                });
+                list.push(line);
+            });
+            let csvData = buildCsv(list)
+            let link = document.createElement("a")
+            link.id = "download-file"
+            link.setAttribute("href", URL.createObjectURL(csvData.blob))
+            link.setAttribute('download', csvData.filename)
+            document.body.appendChild(link)
+            link.click()
+        }
+
+        function buildCsv(list) {
+            let csvString = list.map(e => e.join("\t,"))
+                .join('\n')
+            let filename = "results" + new Date().format('MMdd-hhmm') + ".csv"
+            let exportContent = '\uFEFF'
+            let blob = new Blob([exportContent + csvString], {
+                type: 'text/plain;charset=utrf-8'
+            })
+            return { blob, filename }
+        }
+
     </script>
 </head>
 
