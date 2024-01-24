@@ -27,7 +27,7 @@ class AppStore {
   paint() {
 
     for (let i = 0; i < 99 + 9; i++) {
-      let type = POINTS[i] ? 0 : 1;
+      let type = POINTS[i] ? 1 : 1;
       this.squares.push({ i, type })
     }
   }
