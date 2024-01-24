@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { observer } from 'mobx-react';
 
-import AppContext from '../store/appContext';
-import Square from './Square.jsx';
+import AppContext from '@/store/appContext';
+import Square from '@/components/Square';
 
-import '../style/Board.less';
+import '@/style/Board.less';
 
 const Board = observer(() => {
 

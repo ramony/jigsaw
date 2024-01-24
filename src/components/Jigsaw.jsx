@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 
 import '../style/Jigsaw.css';
-import Board from './Board.jsx';
+import Board from '@/components/Board';
 
 const Jigsaw = observer(() => {
   return (

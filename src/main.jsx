@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './App'
 import './index.css'
 
-import { AppStore } from './store/appStore.jsx'
-import AppContext from './store/appContext.jsx'
-import { buildClassMethods } from './utils/ClassUtils.jsx';
+import { AppStore } from './store/appStore'
+import AppContext from './store/appContext'
+import { buildClassMethods } from './utils/ClassUtils';
 
 const appStore = new AppStore();
 buildClassMethods(AppStore.prototype, appStore);

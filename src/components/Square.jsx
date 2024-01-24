@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 
-import '../style/Square.less';
+import '@/style/Square.less';
 
 const Square = observer((props) => {
 
