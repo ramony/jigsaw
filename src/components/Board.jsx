@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { observer } from 'mobx-react';
 
 import AppContext from '../store/appContext';
-import Square from './Square';
+import Square from './Square.jsx';
 
 import '../style/Board.less';
 

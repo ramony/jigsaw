@@ -6,10 +6,10 @@ const Square = observer((props) => {
 
     return (
         <div className={"Square Square-" + props.type}>
-            <div class="lt"></div>
+            <div className={"lt"}></div>
             <div></div>
             <div></div>
-            <div class="rb"></div>
+            <div className={"rb"}></div>
         </div>
     )
 
