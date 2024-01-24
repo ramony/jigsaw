@@ -10,7 +10,6 @@ import { buildClassMethods } from './utils/ClassUtils';
 const appStore = new AppStore();
 buildClassMethods(AppStore.prototype, appStore);
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AppContext.Provider value={appStore}>
