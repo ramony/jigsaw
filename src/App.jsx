@@ -1,5 +1,5 @@
 import './App.css';
-import Jigsaw from '@/pages/Jigsaw.jsx';
+import Jigsaw from '@/pages/jigsaw/Index';
 
 import './App.css'
 
